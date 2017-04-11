@@ -13,6 +13,14 @@ public class Automobile extends Vehicle{
     private int maxPassengers;
     private float trunkSpace;
 
+    public Automobile(){
+        //explicitly calling super class constructor. Not necessary, but here for clarity
+        super();
+        hybrid = false;
+        maxPassengers = 0;
+        trunkSpace = 0.0f;
+    }
+    
     /**
      * @return the hybrid
      */
