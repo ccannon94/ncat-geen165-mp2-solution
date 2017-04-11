@@ -59,4 +59,9 @@ public class CargoVan extends Van{
     public void setCargoArea(float cargoArea) {
         this.cargoArea = cargoArea;
     }
+    
+    @Override
+    public String toString(){
+        return "C" + System.lineSeparator() + make + System.lineSeparator() + model + System.lineSeparator() + vin + System.lineSeparator() + year + System.lineSeparator() + clearanceHeight + System.lineSeparator() + numWindows + System.lineSeparator() + maxLoad + System.lineSeparator() + cargoArea + System.lineSeparator();
+    }
 }
