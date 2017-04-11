@@ -14,6 +14,8 @@ public class PassengerVan extends Van{
     private boolean dvdPlayer;
 
     public PassengerVan(){
+        //super constructor called for clarity
+        super();
         numSeatRows = maxPassengers = 0;
         dvdPlayer = false;
     }
