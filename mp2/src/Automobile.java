@@ -28,6 +28,14 @@ public class Automobile extends Vehicle{
         this.trunkSpace = trunkSpace;
     }
     
+    public Automobile(String make, String model, String vin, int year, boolean hybrid, int maxPassengers, float trunkSpace){
+        //Now necessary as we are passing values to superclass methods
+        super(make, model, vin, year);
+        this.hybrid = hybrid;
+        this.maxPassengers = maxPassengers;
+        this.trunkSpace = trunkSpace;
+    }
+    
     /**
      * @return the hybrid
      */
