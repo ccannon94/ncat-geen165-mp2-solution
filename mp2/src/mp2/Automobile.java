@@ -81,8 +81,14 @@ public class Automobile extends Vehicle{
         this.trunkSpace = trunkSpace;
     }
     
+    public int hybridAsInt(){
+        if(hybrid)
+            return 1;
+        return 0;
+    }
+    
     @Override
     public String toString(){
-        return "A" + System.lineSeparator() + make + System.lineSeparator() + model + System.lineSeparator() + vin + System.lineSeparator() + year + System.lineSeparator() + hybrid + System.lineSeparator() + maxPassengers + System.lineSeparator() + trunkSpace + System.lineSeparator();
+        return "A" + System.lineSeparator() + make + System.lineSeparator() + model + System.lineSeparator() + vin + System.lineSeparator() + year + System.lineSeparator() + hybridAsInt() + System.lineSeparator() + maxPassengers + System.lineSeparator() + trunkSpace + System.lineSeparator();
     }
 }
