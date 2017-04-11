@@ -58,4 +58,13 @@ public class Fleet {
     public Vehicle removeVehicle(int index){
         return fleetList.remove(index);
     }
+    
+    public String toString(){
+        String returnString = fleetName + System.lineSeparator();
+        for(int i = 0; i < fleetList.size(); i++){
+            returnString += fleetList.get(i).toString();
+        }
+        
+        return returnString;
+    }
 }
