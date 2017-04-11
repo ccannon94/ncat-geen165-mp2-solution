@@ -21,6 +21,13 @@ public class Automobile extends Vehicle{
         trunkSpace = 0.0f;
     }
     
+    public Automobile(boolean hybrid, int maxPassengers, float trunkSpace){
+        //explicitly calling for clarity, not necessary
+        super();
+        this.hybrid = hybrid;
+        this.trunkSpace = trunkSpace;
+    }
+    
     /**
      * @return the hybrid
      */
