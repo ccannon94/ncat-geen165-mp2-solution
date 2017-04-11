@@ -12,6 +12,13 @@ public class CargoVan extends Van{
     private float maxLoad;
     private float cargoArea;
 
+    public CargoVan(){
+        //super constructor called for clarity only
+        super();
+        maxLoad = 0.0f;
+        cargoArea = 0.0f;
+    }
+    
     /**
      * @return the maxLoad
      */
