@@ -5,6 +5,7 @@
  */
 package mp2;
 
+import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 
 /**
@@ -18,17 +19,31 @@ public class Mp2 {
      */
     public static void main(String[] args) {
         // TODO code application logic here
-        Vehicle myVehicle = new Vehicle("Honda", "NSX", "12345HONDA5431", 2017);
-        Automobile myAuto = new Automobile("Honda", "Civic", "132434DFJKFJE", 2016, false, 5, 2.4f);
-        Van myVan = new Van("Honda", "Odyssey", "1240OIFJ3R4UT09", 2015, 11.8f, 8);
-        PassengerVan myPVan = new PassengerVan("Honda", "Odyssey", "FJ3IUFH345JT4", 2018, 10.6f, 8, 3, 7, true);
-        CargoVan myCVan = new CargoVan("Mercedes", "Sprinter", "JFIJ3483TH8H5", 2016, 16.3f, 3, 2400f, 42.6f);
+        String inputFileName = "";
+        String outputFileName = "";
         
-        JOptionPane.showMessageDialog(null, myVehicle, "Vehicle", JOptionPane.PLAIN_MESSAGE);
-        JOptionPane.showMessageDialog(null, myAuto, "Automobile", JOptionPane.PLAIN_MESSAGE);
-        JOptionPane.showMessageDialog(null, myVan, "Van", JOptionPane.PLAIN_MESSAGE);
-        JOptionPane.showMessageDialog(null, myPVan, "Passenger Van", JOptionPane.PLAIN_MESSAGE);
-        JOptionPane.showMessageDialog(null, myCVan, "Cargo Van", JOptionPane.PLAIN_MESSAGE);
+        if(args.length == 0){
+            JFileChooser chooser = new JFileChooser();
+            int result = chooser.showOpenDialog(null);
+            if(result == JFileChooser.APPROVE_OPTION){
+                inputFileName = chooser.getSelectedFile().getAbsolutePath();
+            }
+            
+            int result2 = chooser.showSaveDialog(null);
+            if(result2 == JFileChooser.APPROVE_OPTION){
+                outputFileName = chooser.getSelectedFile().getAbsolutePath();
+            }
+        }else{
+            inputFileName = args[0];
+            outputFileName = args[1];
+        }
+        
+        Fleet aggieFleet = new Fleet();
+        aggieFleet.loadFleet(inputFileName);
+        
+        Automobile nsx = new Automobile("Acura", "NSX", "IJIORT48H3INTGR", 2018, true, 2, 0.7f);
+        
+        aggieFleet.saveFleet(outputFileName);
     }
     
 }
