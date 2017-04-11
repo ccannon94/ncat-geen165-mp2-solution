@@ -12,6 +12,13 @@ public class Van extends Vehicle{
     protected float clearanceHeight;
     protected int numWindows;
 
+    public Van(){
+        //not necessary, but nice for clarity
+        super();
+        clearanceHeight = 0.0f;
+        numWindows = 0;
+    }
+    
     /**
      * @return the clearanceHeight
      */
