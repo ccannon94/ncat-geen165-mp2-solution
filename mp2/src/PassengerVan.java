@@ -76,4 +76,9 @@ public class PassengerVan extends Van{
     public void setDvdPlayer(boolean dvdPlayer) {
         this.dvdPlayer = dvdPlayer;
     }
+    
+    @Override
+    public String toString(){
+        return "P" + System.lineSeparator() + make + System.lineSeparator() + model + System.lineSeparator() + vin + System.lineSeparator() + year + System.lineSeparator() + clearanceHeight + System.lineSeparator() + numWindows + System.lineSeparator() + numSeatRows + System.lineSeparator() + maxPassengers + System.lineSeparator() + dvdPlayer + System.lineSeparator();
+    }
 }
