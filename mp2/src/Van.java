@@ -19,6 +19,14 @@ public class Van extends Vehicle{
         numWindows = 0;
     }
     
+    public Van(float clearanceHeight, int numWindows){
+        //super noarg for clarity
+        super();
+        this.clearanceHeight = clearanceHeight;
+        this.numWindows = numWindows;
+    }
+    
+    
     /**
      * @return the clearanceHeight
      */
