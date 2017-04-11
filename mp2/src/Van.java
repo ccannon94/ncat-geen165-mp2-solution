@@ -26,6 +26,11 @@ public class Van extends Vehicle{
         this.numWindows = numWindows;
     }
     
+    public Van(String make, String model, String vin, int year, float clearanceHeight, int numWindows){
+        super(make, model, vin, year);
+        this.clearanceHeight = clearanceHeight;
+        this.numWindows = numWindows;
+    }
     
     /**
      * @return the clearanceHeight
