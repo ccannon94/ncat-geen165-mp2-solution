@@ -5,7 +5,12 @@
  */
 package mp2;
 
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
+import java.util.Scanner;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -57,6 +62,77 @@ public class Fleet {
     
     public Vehicle removeVehicle(int index){
         return fleetList.remove(index);
+    }
+    
+    public void loadFleet(String inputFileName){
+        try {
+            Scanner reader = new Scanner(new File(inputFileName));
+            
+            fleetName = reader.nextLine();
+            
+            while(reader.hasNext()){
+                String vehicleType = reader.nextLine().trim();
+                
+                if(vehicleType == "A"){
+                    Automobile newAuto = new Automobile();
+                    
+                    newAuto.setMake(reader.nextLine());
+                    newAuto.setModel(reader.nextLine());
+                    newAuto.setVin(reader.nextLine());
+                    newAuto.setYear(Integer.parseInt(reader.nextLine().trim().trim()));
+                    
+                    String hybridString = reader.nextLine().trim();
+                    if(hybridString.equals("1"))
+                        newAuto.setHybrid(true);
+                    else
+                        newAuto.setHybrid(false);
+                    
+                    newAuto.setMaxPassengers(Integer.parseInt(reader.nextLine().trim()));
+                    newAuto.setTrunkSpace(Float.parseFloat(reader.nextLine().trim()));
+                    
+                    fleetList.add(newAuto);
+                }else if(vehicleType == "P"){
+                    PassengerVan newPVan = new PassengerVan();
+                    
+                    newPVan.setMake(reader.nextLine());
+                    newPVan.setModel(reader.nextLine());
+                    newPVan.setVin(reader.nextLine());
+                    newPVan.setYear(Integer.parseInt(reader.nextLine().trim()));
+                    
+                    newPVan.setClearanceHeight(Float.parseFloat(reader.nextLine().trim()));
+                    newPVan.setNumWindows(Integer.parseInt(reader.nextLine().trim()));
+                    
+                    newPVan.setNumSeatRows(Integer.parseInt(reader.nextLine().trim()));
+                    newPVan.setMaxPassengers(Integer.parseInt(reader.nextLine().trim()));
+                    
+                    String dvdString = reader.nextLine().trim();
+                    if(dvdString.equals("1"))
+                        newPVan.setDvdPlayer(true);
+                    else
+                        newPVan.setDvdPlayer(false);
+                    
+                    fleetList.add(newPVan);
+                }else{
+                    CargoVan newCVan = new CargoVan();
+                    
+                    newCVan.setMake(reader.nextLine());
+                    newCVan.setModel(reader.nextLine());
+                    newCVan.setVin(reader.nextLine());
+                    newCVan.setYear(Integer.parseInt(reader.nextLine().trim()));
+                    
+                    newCVan.setClearanceHeight(Float.parseFloat(reader.nextLine().trim()));
+                    newCVan.setNumWindows(Integer.parseInt(reader.nextLine().trim()));
+                    
+                    newCVan.setMaxLoad(Float.parseFloat(reader.nextLine().trim()));
+                    newCVan.setClearanceHeight(Float.parseFloat(reader.nextLine().trim()));
+                    
+                    fleetList.add(newCVan);
+                }
+            }
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(Fleet.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println("Fleet input file not found");
+        }
     }
     
     public String toString(){
