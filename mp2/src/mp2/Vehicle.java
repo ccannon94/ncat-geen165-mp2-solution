@@ -86,6 +86,6 @@ public class Vehicle {
     
     @Override
     public String toString(){
-        return "V" + make + System.lineSeparator() + model + System.lineSeparator() + vin + System.lineSeparator() + year + System.lineSeparator();
+        return "V" + System.lineSeparator() + make + System.lineSeparator() + model + System.lineSeparator() + vin + System.lineSeparator() + year + System.lineSeparator();
     }
 }
