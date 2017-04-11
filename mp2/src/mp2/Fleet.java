@@ -15,6 +15,11 @@ public class Fleet {
     private String fleetName;
     ArrayList<Vehicle> fleetList;
 
+    public Fleet(){
+        fleetName = "";
+        fleetList = new ArrayList<>();
+    }
+    
     /**
      * @return the fleetName
      */
