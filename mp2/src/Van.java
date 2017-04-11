@@ -59,4 +59,9 @@ public class Van extends Vehicle{
     public void setNumWindows(int numWindows) {
         this.numWindows = numWindows;
     }
+    
+    @Override
+    public String toString(){
+        return "V" + System.lineSeparator() + make + System.lineSeparator() + model + System.lineSeparator() + vin + System.lineSeparator() + year + System.lineSeparator() + clearanceHeight + System.lineSeparator() + numWindows;
+    }
 }
