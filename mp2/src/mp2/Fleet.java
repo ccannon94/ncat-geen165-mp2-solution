@@ -149,6 +149,29 @@ public class Fleet {
         }
     }
     
+    public ArrayList<Vehicle> getVehicleList(Class vehicleClass){
+        ArrayList<Vehicle> sublist = new ArrayList<>();
+        
+        if(vehicleClass == Automobile.class){
+            for(int i = 0; i < fleetList.size(); i++){
+                if(fleetList.get(i) instanceof Automobile)
+                    sublist.add(fleetList.get(i));
+            }
+        }else if(vehicleClass == PassengerVan.class){
+            for(int i = 0; i < fleetList.size(); i++){
+                if(fleetList.get(i) instanceof PassengerVan)
+                    sublist.add(fleetList.get(i));
+            }
+        }else{
+            for(int i = 0; i < fleetList.size(); i++){
+                if(fleetList.get(i) instanceof CargoVan)
+                    sublist.add(fleetList.get(i));
+            }
+        }
+        
+        return sublist;
+    }
+    
     public String toString(){
         String returnString = fleetName + System.lineSeparator();
         for(int i = 0; i < fleetList.size(); i++){
