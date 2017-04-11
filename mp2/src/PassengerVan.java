@@ -18,6 +18,14 @@ public class PassengerVan extends Van{
         dvdPlayer = false;
     }
     
+    public PassengerVan(int numSeatRows, int maxPassengers, boolean dvdPlayer){
+        //called for clarity, not necessary
+        super();
+        this.numSeatRows = numSeatRows;
+        this.maxPassengers = maxPassengers;
+        this.dvdPlayer = dvdPlayer;
+    }
+    
     /**
      * @return the numSeatRows
      */
