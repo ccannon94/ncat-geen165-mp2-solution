@@ -14,6 +14,11 @@ public class Vehicle {
     protected String vin;
     protected int year;
 
+    public Vehicle(){
+        make = model = vin = "";
+        year = 0;
+    }
+    
     /**
      * @return the make
      */
