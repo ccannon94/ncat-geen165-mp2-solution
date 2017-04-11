@@ -49,7 +49,7 @@ public class Fleet {
         return fleetList.size();
     }
     
-    public Vehicle getVehcile(int index){
+    public Vehicle getVehicle(int index){
         return fleetList.get(index);
     }
     
