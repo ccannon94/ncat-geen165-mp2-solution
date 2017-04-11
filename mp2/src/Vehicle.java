@@ -81,4 +81,8 @@ public class Vehicle {
     public void setYear(int year) {
         this.year = year;
     }
+    
+    public String toString(){
+        return "V" + make + System.lineSeparator() + model + System.lineSeparator() + vin + System.lineSeparator() + year + System.lineSeparator();
+    }
 }
