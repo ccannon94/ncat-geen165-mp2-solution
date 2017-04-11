@@ -28,6 +28,13 @@ public class PassengerVan extends Van{
         this.dvdPlayer = dvdPlayer;
     }
     
+    public PassengerVan(String make, String model, String vin, int year, float clearanceHeight, int numWindows, int numSeatRows, int maxPassengers, boolean dvdPlayer){
+        super(make, model, vin, year, clearanceHeight, numWindows);
+        this.numSeatRows = numSeatRows;
+        this.maxPassengers = maxPassengers;
+        this.dvdPlayer = dvdPlayer;
+    }
+    
     /**
      * @return the numSeatRows
      */
