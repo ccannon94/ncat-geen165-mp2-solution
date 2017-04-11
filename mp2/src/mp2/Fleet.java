@@ -20,6 +20,11 @@ public class Fleet {
         fleetList = new ArrayList<>();
     }
     
+    public Fleet(String fleetName){
+        this.fleetName = fleetName;
+        fleetList = new ArrayList<>();
+    }
+    
     /**
      * @return the fleetName
      */
