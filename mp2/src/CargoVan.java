@@ -26,6 +26,12 @@ public class CargoVan extends Van{
         this.cargoArea = cargoArea;
     }
     
+    public CargoVan(String make, String model, String vin, int year, float clearanceHeight, int numWindows, float maxLoad, float cargoArea){
+        super(make, model, vin, year, clearanceHeight, numWindows);
+        this.maxLoad = maxLoad;
+        this.cargoArea = cargoArea;
+    }
+    
     /**
      * @return the maxLoad
      */
