@@ -13,6 +13,11 @@ public class PassengerVan extends Van{
     private int maxPassengers;
     private boolean dvdPlayer;
 
+    public PassengerVan(){
+        numSeatRows = maxPassengers = 0;
+        dvdPlayer = false;
+    }
+    
     /**
      * @return the numSeatRows
      */
