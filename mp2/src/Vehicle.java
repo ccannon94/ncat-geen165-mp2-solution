@@ -19,6 +19,13 @@ public class Vehicle {
         year = 0;
     }
     
+    public Vehicle(String make, String model, String vin, int year){
+        this.make = make;
+        this.model = model;
+        this.vin = vin;
+        this.year = year;
+    }
+    
     /**
      * @return the make
      */
