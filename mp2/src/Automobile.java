@@ -78,4 +78,8 @@ public class Automobile extends Vehicle{
     public void setTrunkSpace(float trunkSpace) {
         this.trunkSpace = trunkSpace;
     }
+    
+    public String toString(){
+        return "A" + System.lineSeparator() + make + System.lineSeparator() + model + System.lineSeparator() + vin + System.lineSeparator() + year + System.lineSeparator() + hybrid + System.lineSeparator() + maxPassengers + System.lineSeparator() + trunkSpace + System.lineSeparator();
+    }
 }
