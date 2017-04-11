@@ -25,6 +25,7 @@ public class Automobile extends Vehicle{
         //explicitly calling for clarity, not necessary
         super();
         this.hybrid = hybrid;
+        this.maxPassengers = maxPassengers;
         this.trunkSpace = trunkSpace;
     }
     
