@@ -19,6 +19,13 @@ public class CargoVan extends Van{
         cargoArea = 0.0f;
     }
     
+    public CargoVan(float maxLoad, float cargoArea){
+        //super constructor called for clarity only
+        super();
+        this.maxLoad = maxLoad;
+        this.cargoArea = cargoArea;
+    }
+    
     /**
      * @return the maxLoad
      */
