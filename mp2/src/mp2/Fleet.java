@@ -7,6 +7,7 @@ package mp2;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.logging.Level;
@@ -132,6 +133,19 @@ public class Fleet {
         } catch (FileNotFoundException ex) {
             Logger.getLogger(Fleet.class.getName()).log(Level.SEVERE, null, ex);
             System.out.println("Fleet input file not found");
+        }
+    }
+    
+    public void saveFleet(String outputFileName){
+        try {
+            PrintWriter writer = new PrintWriter(new File(outputFileName));
+            
+            writer.println(toString());
+            
+            writer.close();
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(Fleet.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println("Fleet output file not found");
         }
     }
     
