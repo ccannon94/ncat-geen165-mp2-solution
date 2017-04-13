@@ -7,6 +7,8 @@ package mp2;
 
 import java.io.File;
 import javafx.application.Application;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
@@ -14,6 +16,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.ListView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.stage.FileChooser;
@@ -70,38 +73,56 @@ public class MajorProgram2_UI extends Application implements EventHandler{
         Button sourceButton = (Button) event.getSource();
         
         if(sourceButton != null && sourceButton.getText().equals("Load")){
-            activeFleet = new Fleet();
-            
-            FileChooser loadChooser = new FileChooser();
-            loadChooser.setTitle("Select an input Fleet file");
-            loadChooser.setInitialDirectory(new File(System.getProperty("user.home")));
-            loadChooser.getExtensionFilters().setAll(new FileChooser.ExtensionFilter("Text Files", "*.txt"));
-            File inputFile = loadChooser.showOpenDialog(null);
-            
-            activeFleet.loadFleet(inputFile.getAbsolutePath());
-            fleetLabel.setText(activeFleet.getFleetName());
+            handleLoad();
         }
         
         if(sourceButton != null && sourceButton.getText().equals("View")){
-            if(activeFleet == null){
-                Alert noActiveFleetAlert = new Alert(AlertType.INFORMATION);
-                noActiveFleetAlert.setTitle("No Active Fleet Detected");
-                noActiveFleetAlert.setHeaderText("You have not loaded a Fleet into the application");
-                noActiveFleetAlert.setContentText("Please load a fleet by selecting the 'Load' button before continuing");
-                noActiveFleetAlert.showAndWait();
-                
-                return;
-            }
-            
-            Stage viewStage = new Stage();
-            
-            BorderPane viewBorderPane = new BorderPane();
-            
-            Scene viewWindow = new Scene(viewBorderPane);
-            
-            viewStage.setScene(viewWindow);
-            viewStage.show();
+            handleView();
         }
     }
     
+    private void handleLoad(){
+        activeFleet = new Fleet();
+            
+        FileChooser loadChooser = new FileChooser();
+        loadChooser.setTitle("Select an input Fleet file");
+        loadChooser.setInitialDirectory(new File(System.getProperty("user.home")));
+        loadChooser.getExtensionFilters().setAll(new FileChooser.ExtensionFilter("Text Files", "*.txt"));
+        File inputFile = loadChooser.showOpenDialog(null);
+
+        activeFleet.loadFleet(inputFile.getAbsolutePath());
+        fleetLabel.setText(activeFleet.getFleetName());
+    }
+    
+    private void handleView(){
+        if(activeFleet == null){
+            Alert noActiveFleetAlert = new Alert(AlertType.INFORMATION);
+            noActiveFleetAlert.setTitle("No Active Fleet Detected");
+            noActiveFleetAlert.setHeaderText("You have not loaded a Fleet into the application");
+            noActiveFleetAlert.setContentText("Please load a fleet by selecting the 'Load' button before continuing");
+            noActiveFleetAlert.showAndWait();
+
+            return;
+        }
+
+        Stage viewStage = new Stage();
+
+        BorderPane viewBorderPane = new BorderPane();
+
+        ObservableList<String> vehicleTypes = FXCollections.observableArrayList();
+        vehicleTypes.add("Automobiles - " + activeFleet.getVehicleList(Automobile.class).size());
+        vehicleTypes.add("Cargo Vans - " + activeFleet.getVehicleList(CargoVan.class).size());
+        vehicleTypes.add("Passenger Vans - " + activeFleet.getVehicleList(PassengerVan.class).size());
+        ListView fleetListView = new ListView(vehicleTypes);
+        
+        Button viewVehicleTypeButton = new Button("View");
+        
+        viewBorderPane.setLeft(fleetListView);
+        viewBorderPane.setRight(viewVehicleTypeButton);
+
+        Scene viewWindow = new Scene(viewBorderPane);
+
+        viewStage.setScene(viewWindow);
+        viewStage.show();
+    }
 }
