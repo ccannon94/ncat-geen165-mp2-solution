@@ -29,6 +29,8 @@ public class MajorProgram2_UI extends Application implements EventHandler{
     
     @Override
     public void start(Stage primaryStage) throws Exception {
+        activeFleet = new Fleet();
+        
         BorderPane pane = new BorderPane();
         fleetLabel = new Label("Please Load a Fleet");
         
