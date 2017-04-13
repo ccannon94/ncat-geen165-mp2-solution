@@ -10,8 +10,6 @@ import javafx.application.Application;
 import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.BorderPane;
@@ -26,17 +24,20 @@ import javafx.stage.Stage;
 public class MajorProgram2_UI extends Application implements EventHandler{
     Fleet activeFleet;
     
+    Scene mainMenu;
     Label fleetLabel;
     
     @Override
     public void start(Stage primaryStage) throws Exception {
+        activeFleet = new Fleet();
+        
         BorderPane pane = new BorderPane();
         fleetLabel = new Label("Please Load a Fleet");
         
         pane.setTop(fleetLabel);
         pane.setCenter(createControlBox());
         
-        Scene mainMenu = new Scene(pane);
+        mainMenu = new Scene(pane);
         
         primaryStage.setScene(mainMenu);
         primaryStage.show();
@@ -70,8 +71,6 @@ public class MajorProgram2_UI extends Application implements EventHandler{
         Button sourceButton = (Button) event.getSource();
         
         if(sourceButton != null && sourceButton.getText().equals("Load")){
-            activeFleet = new Fleet();
-            
             FileChooser loadChooser = new FileChooser();
             loadChooser.setTitle("Select an input Fleet file");
             loadChooser.setInitialDirectory(new File(System.getProperty("user.home")));
@@ -80,27 +79,6 @@ public class MajorProgram2_UI extends Application implements EventHandler{
             
             activeFleet.loadFleet(inputFile.getAbsolutePath());
             fleetLabel.setText(activeFleet.getFleetName());
-        }
-        
-        if(sourceButton != null && sourceButton.getText().equals("View")){
-            if(activeFleet == null){
-                Alert noActiveFleetAlert = new Alert(AlertType.INFORMATION);
-                noActiveFleetAlert.setTitle("No Active Fleet Detected");
-                noActiveFleetAlert.setHeaderText("You have not loaded a Fleet into the application");
-                noActiveFleetAlert.setContentText("Please load a fleet by selecting the 'Load' button before continuing");
-                noActiveFleetAlert.showAndWait();
-                
-                return;
-            }
-            
-            Stage viewStage = new Stage();
-            
-            BorderPane viewBorderPane = new BorderPane();
-            
-            Scene viewWindow = new Scene(viewBorderPane);
-            
-            viewStage.setScene(viewWindow);
-            viewStage.show();
         }
     }
     
