@@ -82,7 +82,9 @@ public class MajorProgram2_UI extends Application implements EventHandler {
         if (sourceButton != null && sourceButton.getText().equals("Load")) {
             handleLoad();
         }
-
+        if (sourceButton != null && sourceButton.getText().equals("Add")) {
+            handleAdd();
+        }
         if (sourceButton != null && sourceButton.getText().equals("View")) {
             handleView();
         }
@@ -106,6 +108,19 @@ public class MajorProgram2_UI extends Application implements EventHandler {
         activeFleet.loadFleet(inputFile.getAbsolutePath());
         saved = true;
         fleetLabel.setText(activeFleet.getFleetName());
+    }
+    
+    private void handleAdd(){
+        if(activeFleet == null){
+            alertNoActiveFleet();
+            
+            return;
+        }
+        
+        Stage addStage = new Stage();
+        
+        BorderPane addBorderPane = new BorderPane();
+        
     }
 
     private void handleView() {
