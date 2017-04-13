@@ -84,6 +84,10 @@ public class MajorProgram2_UI extends Application implements EventHandler {
         if (sourceButton != null && sourceButton.getText().equals("View")) {
             handleView();
         }
+        
+        if (sourceButton != null && sourceButton.getText().equals("Exit")){
+            handleExit();
+        }
     }
 
     private void handleLoad() {
@@ -192,8 +196,9 @@ public class MajorProgram2_UI extends Application implements EventHandler {
 
         viewStage.setScene(viewWindow);
         viewStage.show();
-        
-        
+    }
+    
+    private void handleExit(){
         
     }
 }
