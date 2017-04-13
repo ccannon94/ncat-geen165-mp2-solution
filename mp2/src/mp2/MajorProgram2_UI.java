@@ -49,10 +49,15 @@ public class MajorProgram2_UI extends Application implements EventHandler{
         HBox controlBox = new HBox();
         
         Button viewButton = new Button("View");
+        viewButton.setOnAction(this);
         Button addButton = new Button("Add");
+        addButton.setOnAction(this);
         Button loadButton = new Button("Load");
+        loadButton.setOnAction(this);
         Button saveButton = new Button("Save");
+        saveButton.setOnAction(this);
         Button exitButton = new Button("Exit");
+        exitButton.setOnAction(this);
         
         controlBox.getChildren().addAll(viewButton, addButton, loadButton, saveButton, exitButton);
         
