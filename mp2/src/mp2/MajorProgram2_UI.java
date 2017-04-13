@@ -7,6 +7,7 @@ package mp2;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.Optional;
 import javafx.application.Application;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -18,6 +19,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.BorderPane;
@@ -215,7 +217,21 @@ public class MajorProgram2_UI extends Application implements EventHandler {
     }
     
     private void handleExit(){
-        
+        if(activeFleet != null && !saved){
+            Alert unsavedChangesAlert = new Alert(AlertType.CONFIRMATION);
+            unsavedChangesAlert.setTitle("Unsaved changes detected");
+            unsavedChangesAlert.setHeaderText("Would you like to save your changes?");
+            unsavedChangesAlert.setContentText("Select 'OK' to save your changes, press 'cancel' to continue exiting");
+            
+            Optional<ButtonType> result = unsavedChangesAlert.showAndWait();
+            if (result.get() == ButtonType.OK){
+                handleSave();
+                System.exit(0);
+            } else {
+                System.exit(0);
+            }
+        }
+        System.exit(0);
     }
     
     private void alertNoActiveFleet(){
