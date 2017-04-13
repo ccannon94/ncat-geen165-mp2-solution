@@ -8,7 +8,6 @@ package mp2;
 import javafx.application.Application;
 import javafx.event.Event;
 import javafx.event.EventHandler;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.BorderPane;
@@ -20,19 +19,13 @@ import javafx.stage.Stage;
  * @author Chris
  */
 public class MajorProgram2_UI extends Application implements EventHandler{
-    Scene mainMenu;
-    
+
     @Override
     public void start(Stage primaryStage) throws Exception {
         BorderPane pane = new BorderPane();
         Label fleetLabel = new Label();
         
         pane.setCenter(createControlBox());
-        
-        mainMenu = new Scene(pane);
-        
-        primaryStage.setScene(mainMenu);
-        primaryStage.show();
     }
 
     public void launchGUI(String[] args){
