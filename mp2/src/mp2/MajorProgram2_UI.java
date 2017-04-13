@@ -33,7 +33,7 @@ import javafx.stage.Stage;
 public class MajorProgram2_UI extends Application implements EventHandler {
 
     Fleet activeFleet;
-
+    boolean saved;
     Label fleetLabel;
 
     @Override
@@ -84,7 +84,9 @@ public class MajorProgram2_UI extends Application implements EventHandler {
         if (sourceButton != null && sourceButton.getText().equals("View")) {
             handleView();
         }
-        
+        if(sourceButton != null && sourceButton.getText().equals("Save")){
+            handleSave();
+        }
         if (sourceButton != null && sourceButton.getText().equals("Exit")){
             handleExit();
         }
@@ -100,16 +102,13 @@ public class MajorProgram2_UI extends Application implements EventHandler {
         File inputFile = loadChooser.showOpenDialog(null);
 
         activeFleet.loadFleet(inputFile.getAbsolutePath());
+        saved = true;
         fleetLabel.setText(activeFleet.getFleetName());
     }
 
     private void handleView() {
         if (activeFleet == null) {
-            Alert noActiveFleetAlert = new Alert(AlertType.INFORMATION);
-            noActiveFleetAlert.setTitle("No Active Fleet Detected");
-            noActiveFleetAlert.setHeaderText("You have not loaded a Fleet into the application");
-            noActiveFleetAlert.setContentText("Please load a fleet by selecting the 'Load' button before continuing");
-            noActiveFleetAlert.showAndWait();
+            alertNoActiveFleet();
 
             return;
         }
@@ -198,7 +197,32 @@ public class MajorProgram2_UI extends Application implements EventHandler {
         viewStage.show();
     }
     
+    private void handleSave(){
+        if(activeFleet == null){
+            alertNoActiveFleet();
+
+            return;
+        }
+        
+        FileChooser saveChooser = new FileChooser();
+        saveChooser.setTitle("Select a location to save the Fleet");
+        saveChooser.setInitialDirectory(new File(System.getProperty("user.home")));
+        saveChooser.getExtensionFilters().setAll(new FileChooser.ExtensionFilter("Text Files", "*.txt"));
+        File outputFile = saveChooser.showOpenDialog(null);
+        
+        activeFleet.saveFleet(outputFile.getAbsolutePath());
+        saved = true;
+    }
+    
     private void handleExit(){
         
+    }
+    
+    private void alertNoActiveFleet(){
+        Alert noActiveFleetAlert = new Alert(AlertType.INFORMATION);
+        noActiveFleetAlert.setTitle("No Active Fleet Detected");
+        noActiveFleetAlert.setHeaderText("You have not loaded a Fleet into the application");
+        noActiveFleetAlert.setContentText("Please load a fleet by selecting the 'Load' button before continuing");
+        noActiveFleetAlert.showAndWait();
     }
 }
