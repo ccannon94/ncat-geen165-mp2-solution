@@ -21,14 +21,12 @@ import javafx.stage.Stage;
  */
 public class MajorProgram2_UI extends Application implements EventHandler{
     Scene mainMenu;
-    Fleet activeFleet;
     
     @Override
     public void start(Stage primaryStage) throws Exception {
         BorderPane pane = new BorderPane();
         Label fleetLabel = new Label();
         
-        pane.setTop(fleetLabel);
         pane.setCenter(createControlBox());
         
         mainMenu = new Scene(pane);
@@ -39,10 +37,6 @@ public class MajorProgram2_UI extends Application implements EventHandler{
 
     public void launchGUI(String[] args){
         System.out.println("Launching GUI");
-        
-        activeFleet = new Fleet();
-        activeFleet.loadFleet(args[0]);
-        
         launch();
     }
     
