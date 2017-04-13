@@ -6,10 +6,7 @@
 package mp2;
 
 import java.io.File;
-import java.util.ArrayList;
 import javafx.application.Application;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.Event;
@@ -119,46 +116,6 @@ public class MajorProgram2_UI extends Application implements EventHandler{
         ListView fleetListView = new ListView(vehicleTypes);
         
         Button viewVehicleTypeButton = new Button("View");
-        viewVehicleTypeButton.setOnAction(new EventHandler() {
-            @Override
-            public void handle(Event event) {
-                ObservableList<String> vehicleList = FXCollections.observableArrayList();
-                
-                int currentlySelectedIndex = fleetListView.getSelectionModel().getSelectedIndex();
-                
-                switch (currentlySelectedIndex) {
-                    case 0:
-                        ArrayList<Vehicle> autos = activeFleet.getVehicleList(Automobile.class);
-                        for(Vehicle auto : autos){
-                            vehicleList.add(auto.toString());
-                        }
-                        fleetListView.setItems(vehicleList);
-                        break;
-                    case 1:
-                        ArrayList<Vehicle> cVans = activeFleet.getVehicleList(CargoVan.class);
-                        for(Vehicle cVan : cVans){
-                            vehicleList.add(cVan.toString());
-                        }
-                        fleetListView.setItems(vehicleList);
-                        break;
-                    case 2:
-                        ArrayList<Vehicle> pVans = activeFleet.getVehicleList(PassengerVan.class);
-                        for(Vehicle pVan : pVans){
-                            vehicleList.add(pVan.toString());
-                        }
-                        fleetListView.setItems(vehicleList);
-                        break;
-                    default:
-                        Alert noSelectedIndex = new Alert(AlertType.INFORMATION);
-                        noSelectedIndex.setTitle("No Selected Vehicle Type");
-                        noSelectedIndex.setHeaderText("You have not selected a vehicle type from the list");
-                        noSelectedIndex.setContentText("Please select a vehicle type from the list to the left before continuing");
-                        noSelectedIndex.showAndWait();
-                        
-                        return;
-                }
-            }
-        });
         
         viewBorderPane.setLeft(fleetListView);
         viewBorderPane.setRight(viewVehicleTypeButton);
