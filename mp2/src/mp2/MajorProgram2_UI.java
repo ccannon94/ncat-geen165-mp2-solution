@@ -24,6 +24,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
@@ -121,6 +122,19 @@ public class MajorProgram2_UI extends Application implements EventHandler {
         
         BorderPane addBorderPane = new BorderPane();
         
+        Label addControlsLabel = new Label("Select a Vehicle type to add:");
+        ObservableList<String> vehicleTypeList = FXCollections.observableArrayList("Automobile", "CargoVan", "PassengerVan");
+        ListView vehicleTypesListView = new ListView(vehicleTypeList);
+        Button selectTypeButton = new Button("Select");
+        VBox addControlsVBox = new VBox(addControlsLabel, vehicleTypesListView, selectTypeButton);
+        
+        addBorderPane.setTop(fleetLabel);
+        addBorderPane.setCenter(addControlsVBox);
+        
+        Scene addScene = new Scene(addBorderPane);
+        
+        addStage.setScene(addScene);
+        addStage.show();
     }
 
     private void handleView() {
