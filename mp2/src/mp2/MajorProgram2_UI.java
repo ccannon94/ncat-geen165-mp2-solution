@@ -26,7 +26,7 @@ public class MajorProgram2_UI extends Application implements EventHandler{
     @Override
     public void start(Stage primaryStage) throws Exception {
         BorderPane pane = new BorderPane();
-        Label fleetLabel = new Label("Please Load a Fleet");
+        Label fleetLabel = new Label();
         
         pane.setTop(fleetLabel);
         pane.setCenter(createControlBox());
@@ -37,7 +37,12 @@ public class MajorProgram2_UI extends Application implements EventHandler{
         primaryStage.show();
     }
 
-    public void launchGUI(){
+    public void launchGUI(String[] args){
+        System.out.println("Launching GUI");
+        
+        activeFleet = new Fleet();
+        activeFleet.loadFleet(args[0]);
+        
         launch();
     }
     
