@@ -29,7 +29,8 @@ public class MajorProgram2_UI extends Application implements EventHandler{
     }
 
     public void launchGUI(String[] args){
-        launch(args);
+        System.out.println("Launching GUI");
+        launch();
     }
     
     private HBox createControlBox(){

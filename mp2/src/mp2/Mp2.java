@@ -20,7 +20,6 @@ public class Mp2 {
     public static void main(String[] args) {
         // TODO code application logic here
         String inputFileName = "";
-        String outputFileName = "";
         
         if(args.length == 0){
             JFileChooser chooser = new JFileChooser();
@@ -28,22 +27,11 @@ public class Mp2 {
             if(result == JFileChooser.APPROVE_OPTION){
                 inputFileName = chooser.getSelectedFile().getAbsolutePath();
             }
-            
-            int result2 = chooser.showSaveDialog(null);
-            if(result2 == JFileChooser.APPROVE_OPTION){
-                outputFileName = chooser.getSelectedFile().getAbsolutePath();
-            }
         }else{
             inputFileName = args[0];
-            outputFileName = args[1];
         }
         
-        Fleet aggieFleet = new Fleet();
-        aggieFleet.loadFleet(inputFileName);
-        
-        Automobile nsx = new Automobile("Acura", "NSX", "IJIORT48H3INTGR", 2018, true, 2, 0.7f);
-        
-        aggieFleet.saveFleet(outputFileName);
+        new MajorProgram2_UI().launchGUI(args);
     }
     
 }
