@@ -74,7 +74,7 @@ public class Fleet {
             while(reader.hasNext()){
                 String vehicleType = reader.nextLine().trim();
                 
-                if(vehicleType == "A"){
+                if(vehicleType.equals("A")){
                     Automobile newAuto = new Automobile();
                     
                     newAuto.setMake(reader.nextLine());
@@ -92,7 +92,7 @@ public class Fleet {
                     newAuto.setTrunkSpace(Float.parseFloat(reader.nextLine().trim()));
                     
                     fleetList.add(newAuto);
-                }else if(vehicleType == "P"){
+                }else if(vehicleType.equals("P")){
                     PassengerVan newPVan = new PassengerVan();
                     
                     newPVan.setMake(reader.nextLine());
