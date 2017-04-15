@@ -237,6 +237,74 @@ public class MajorProgram2_UI extends Application implements EventHandler {
             }
 
             private void presentAddCargoVanView() {
+                Stage addCargoStage = new Stage();
+                
+                BorderPane addCargoPane = new BorderPane();
+                
+                GridPane addCargoGrid = new GridPane();
+                Label makeLabel = new Label("Make: ");
+                Label modelLabel = new Label("Model: ");
+                Label vinLabel = new Label("VIN: ");
+                Label yearLabel = new Label("Year: ");
+                Label clearanceHeightLabel = new Label("Clearance Height: ");
+                Label numWindowsLabel = new Label("Number of Windows: ");
+                Label maxLoadLabel = new Label("Max Load: ");
+                Label cargoAreaLabel = new Label("Cargo Area: ");
+                
+                TextField makeTextField = new TextField();
+                TextField modelTextField = new TextField();
+                TextField vinTextField = new TextField();
+                TextField yearTextField = new TextField();
+                TextField clearanceHeightTextField = new TextField();
+                TextField numWindowsTextField = new TextField();
+                TextField maxLoadTextField = new TextField();
+                TextField cargoAreaTextField = new TextField();
+                
+                addCargoGrid.addRow(0, makeLabel, makeTextField);
+                addCargoGrid.addRow(1, modelLabel, modelTextField);
+                addCargoGrid.addRow(2, vinLabel, vinTextField);
+                addCargoGrid.addRow(3, yearLabel, yearTextField);
+                addCargoGrid.addRow(4, clearanceHeightLabel, clearanceHeightTextField);
+                addCargoGrid.addRow(5, numWindowsLabel, numWindowsTextField);
+                addCargoGrid.addRow(6, maxLoadLabel, maxLoadTextField);
+                addCargoGrid.addRow(7, cargoAreaLabel, cargoAreaTextField);
+                
+                Button enterButton = new Button("Enter");
+                enterButton.setOnAction(new EventHandler() {
+                    @Override
+                    public void handle(Event event) {
+                        CargoVan newCargo = new CargoVan();
+                        try{
+                            newCargo.setMake(makeTextField.getText());
+                            newCargo.setModel(modelTextField.getText());
+                            newCargo.setVin(vinTextField.getText());
+                            newCargo.setYear(Integer.parseInt(yearTextField.getText().trim()));
+                            newCargo.setClearanceHeight(Float.parseFloat(clearanceHeightTextField.getText().trim()));
+                            newCargo.setNumWindows(Integer.parseInt(numWindowsTextField.getText().trim()));
+                            newCargo.setMaxLoad(Float.parseFloat(maxLoadTextField.getText().trim()));
+                            newCargo.setCargoArea(Float.parseFloat(cargoAreaTextField.getText().trim()));
+                            
+                            activeFleet.addVehicle(newCargo);
+                            saved = false;
+                            
+                            addCargoStage.close();
+                        }catch(Exception e){
+                            Alert cargoVanCreationError = new Alert(AlertType.INFORMATION);
+                            cargoVanCreationError.setTitle("Cargo van not created");
+                            cargoVanCreationError.setHeaderText("There was an error creating your cargo van");
+                            cargoVanCreationError.setContentText("Please make sure you have entered an appropriate value for each property before continuing");
+                            cargoVanCreationError.showAndWait();
+                        }
+                    }
+                });
+                
+                addCargoPane.setTop(new Label("Add Cargo Van"));
+                addCargoPane.setCenter(addCargoGrid);
+                addCargoPane.setBottom(enterButton);
+                
+                Scene addCargoScene = new Scene(addCargoPane);
+                addCargoStage.setScene(addCargoScene);
+                addCargoStage.show();
             }
 
             private void presentAddPassengerVanView() {
