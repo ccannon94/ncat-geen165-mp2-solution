@@ -308,6 +308,92 @@ public class MajorProgram2_UI extends Application implements EventHandler {
             }
 
             private void presentAddPassengerVanView() {
+                Stage addPassengerStage = new Stage();
+                
+                BorderPane addPassengerPane = new BorderPane();
+                
+                GridPane addPassengerGrid = new GridPane();
+                Label makeLabel = new Label("Make: ");
+                Label modelLabel = new Label("Model: ");
+                Label vinLabel = new Label("VIN: ");
+                Label yearLabel = new Label("Year: ");
+                Label clearanceHeightLabel = new Label("Clearance Height: ");
+                Label numWindowsLabel = new Label("Number of Windows: ");
+                Label numSeatRowsLabel = new Label("Number of Rows of Seats: ");
+                Label maxPassengersLabel = new Label("Maximum Passengers: ");
+                Label dvdPlayerLabel = new Label("DVD Player: ");
+                
+                TextField makeTextField = new TextField();
+                TextField modelTextField = new TextField();
+                TextField vinTextField = new TextField();
+                TextField yearTextField = new TextField();
+                TextField clearanceHeightTextField = new TextField();
+                TextField numWindowsTextField = new TextField();
+                TextField numSeatRowsTextField = new TextField();
+                TextField maxPassengersTextField = new TextField();
+                
+                ComboBox dvdPlayerComboBox = new ComboBox();
+                dvdPlayerComboBox.getItems().addAll(
+                        "Yes",
+                        "No"
+                );
+                
+                addPassengerGrid.addRow(0, makeLabel, makeTextField);
+                addPassengerGrid.addRow(1, modelLabel, modelTextField);
+                addPassengerGrid.addRow(2, vinLabel, vinTextField);
+                addPassengerGrid.addRow(3, yearLabel, yearTextField);
+                addPassengerGrid.addRow(4, clearanceHeightLabel, clearanceHeightTextField);
+                addPassengerGrid.addRow(5, numWindowsLabel, numWindowsTextField);
+                addPassengerGrid.addRow(6, numSeatRowsLabel, numSeatRowsTextField);
+                addPassengerGrid.addRow(7, maxPassengersLabel, maxPassengersTextField);
+                addPassengerGrid.addRow(8, dvdPlayerLabel, dvdPlayerComboBox);
+                
+                Button enterButton = new Button("Enter");
+                enterButton.setOnAction(new EventHandler() {
+                    @Override
+                    public void handle(Event event) {
+                        PassengerVan newPVan = new PassengerVan();
+                        
+                        try{
+                            newPVan.setMake(makeTextField.getText());
+                            newPVan.setModel(modelTextField.getText());
+                            newPVan.setVin(vinTextField.getText());
+                            newPVan.setYear(Integer.parseInt(yearTextField.getText().trim()));
+                            newPVan.setClearanceHeight(Float.parseFloat(clearanceHeightTextField.getText().trim()));
+                            newPVan.setNumWindows(Integer.parseInt(numWindowsTextField.getText().trim()));
+                            newPVan.setNumSeatRows(Integer.parseInt(numSeatRowsTextField.getText().trim()));
+                            newPVan.setMaxPassengers(Integer.parseInt(maxPassengersTextField.getText().trim()));
+                            
+                            if(dvdPlayerComboBox.getSelectionModel().getSelectedIndex() == 0){
+                                newPVan.setDvdPlayer(true);
+                            }else if(dvdPlayerComboBox.getSelectionModel().getSelectedIndex() == 1){
+                                newPVan.setDvdPlayer(false);
+                            }else{
+                                throw new Exception("No dvd player value selected");
+                            }
+                            
+                            activeFleet.addVehicle(newPVan);
+                            saved = false;
+                            
+                            addPassengerStage.close();
+                        }catch(Exception e){
+                            Alert passengerVanCreationError = new Alert(AlertType.INFORMATION);
+                            passengerVanCreationError.setTitle("Passenger van not created");
+                            passengerVanCreationError.setHeaderText("There was an error creating your passenger van");
+                            passengerVanCreationError.setContentText("Please make sure you have entered an appropriate value for each property before continuing");
+                            passengerVanCreationError.showAndWait();
+                        }
+                    }
+                });
+                
+                addPassengerPane.setTop(new Label("Add Passenger Van"));
+                addPassengerPane.setCenter(addPassengerGrid);
+                addPassengerPane.setBottom(enterButton);
+                
+                Scene addPassengerScene = new Scene(addPassengerPane);
+                
+                addPassengerStage.setScene(addPassengerScene);
+                addPassengerStage.show();
             }
         });
         Button backButton = new Button("Back");
